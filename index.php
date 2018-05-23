@@ -31,7 +31,7 @@
        <div id="headX" class="jumbotron text-center gradient alert-info" style =' background-color:lavender ;'> <!--#2ba6cb;-->
          <h1 id="h1Text"> <span id="textChange"> Weather on-line</span> <span class="glyphicon glyphicon-tree-conifer"><!--</span> <img src="http://78.media.tumblr.com/tumblr_m2hq5tt3ma1qav3uso1_400.gif" style="width:3%"/>--> </h1> 
 		   
-           <p class="header_p">All cities weather processor  <!--generates random lists, ramdomizes integers, etc--> <span class="glyphicon glyphicon-duplicate"></span>
+           <p class="header_p">All cities weather processor  <!--generates random lists, ramdomizes integers, etc--> <!--<span class="glyphicon glyphicon-duplicate"></span>-->
            </p>
 		   <!--<p class="language"><a href="/eng">ENG</a></p>-->
 		   
@@ -52,10 +52,20 @@
                           <label for="city">Your city: <span class="glyphicon glyphicon-transfer"></span></label>
                           <input type="text" class="form-control" id="citytext" name="qr" list="character">
 						  <datalist id="character">
-						      <option value="Kyiv"></option>
-                              <option value="Odessa"></option>
+						      
+							  <option value="Amsterdam"></option>
+							  <option value="Kyiv"></option>
+							  <option value="Kuala Lumpur"></option>
 							  <option value="London"></option>
-							  <option value="Miami"></option>
+							  <option value="Marrakech"></option>
+							  <option value="Miami"></option>  
+                              <option value="Odessa"></option>
+							  <option value="Stockholm"></option>
+							  <option value="Tokyo"></option>
+							  <option value="Vienna"></option>
+							  
+							  
+							  
 						  </datalist>
                      </div>
 					<!--
@@ -101,12 +111,12 @@
 				<center>
 				
 				<hr class="alert-info" style="width:98%;height:8px;">
-				<h3 class="alert-info"> Weather in <span id='cityName'>Kyiv</span> for 6 days</h3>
+				<h3 class="alert-info" id="weather_header"> Weather in <span id='cityName'>Kyiv</span> for 6 days</h3>
 				<div class="row" id="weatherResult"> <!-- This div accept the JS html result-->
 				       
 				
 				</div> <!-- END class="row weatherResult">-->
-				</center>
+				
                 <!------------------------- SEND  GENERATING Weather DIVS------------------------------>
                 
 
@@ -114,9 +124,19 @@
 				 
 				 
 				 
+				  <!---Bootstrap dropdown JSON-->
+    	         <div class="dropdown">
+                     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">JSON
+                     <span class="caret"></span></button>
+                     <div class="dropdown-menu">
+					     <p id="pureJson"></p>
+                     
+                     </div>
+                     </div>
+    	         <!---Bootstrap dropdown JSON-->
 				 
-				 
-				 
+				 </center>
+				 <br><br><br><br><br>
 				 
 				 
 				 
@@ -129,9 +149,7 @@
 
                 
 
-
-    	
-    	
+       
 		
 		
 		

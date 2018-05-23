@@ -84,8 +84,10 @@ function(){ //hover off
 	function clearQRField()
 	{
 		
-		$("#qrtext").val("");
-		$("#qrResult").hide(900);
+		$("#citytext").val("");
+		$("#weatherResult").hide(900);
+		//$("#weather_header").hide(900);
+		
 		
 	
 	}
@@ -108,11 +110,11 @@ function(){ //hover off
 		 if (window.cityGet.trim()==''){
 			 var city = "Kiev"; 
 		 } else {
-			 var city = window.cityGet; alert(city);
+			 var city = window.cityGet; alert("You selected " + city);
 		 }
 		  //cnt in API means days
 	      window.data_url = "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + city + "&mode=json&units=metric&cnt=7&appid=42b614437754a4ec7c704604e2a3f97f";  //Kyiv
-		  alert(window.data_url);
+		  //alert(window.data_url);
 		  
 		  var days = 7; // counter for loop
 		  var weather_day_all = "";
@@ -167,7 +169,11 @@ function(){ //hover off
 	
 	      weather_day_all = weather_day_all + "</center>";
 	      //alert(weather_day_all);
-	      $('#weatherResult').html(weather_day_all);  //html the result
+		  
+	      //$('#weatherResult').html(weather_day_all);  //html the result
+		  //html weather result with animation
+		  $("#weatherResult").stop().fadeOut("slow",function(){ $(this).html(weather_day_all)}).fadeIn(2000);
+						
 	      }); //end function
 		  //  END RUNS DUBLICATE getWeather(); on your custom city click, ccan not run myAction() with getWeather() inside, though runs it on default load
 		  
@@ -192,8 +198,8 @@ function(){ //hover off
     // **                                                                   **
 	var days = 7; // counter for loop
 	if ($("#citytext").val().trim()==''){
-		alert('def');
-	    var city = "London"; 
+		alert('default city');
+	    var city = "Kyiv"; 
 	} else {
 		alert('user');
 		var city =  window.cityGet;
@@ -212,9 +218,15 @@ function(){ //hover off
 	myAction(); //working
 	
 	
+	
+	
+	
+	
+	
 	//#####===============================================
 	function myAction() {
 	getWeather(function (data) {
+		
 		
 		
 		var	hours24 = 0;
@@ -272,29 +284,41 @@ function(){ //hover off
 	
 	weather_day_all = weather_day_all + "</center>";
 	//alert(weather_day_all);
-	$('#weatherResult').html(weather_day_all);  //html the result
+	
+	//$('#weatherResult').html(weather_day_all);  //html the result
+	//html weather result with animation
+    $("#weatherResult").stop().fadeOut("slow",function(){ $(this).html(weather_day_all)}).fadeIn(2000);
+		  
+	$('#pureJson').html(JSON.stringify(data, null, 4));  //html pure json to Bootsrap dropdown
+	//alert(JSON.stringify(data, null, 4));
 	}); //end function
 	
 	}
 	//####### ==================================================================
 	
-	
+	//END Weather in Loop--------------------------------------------------------------------
 	
 	
 	
 	
 	
 	// function to use jsonp to get weather information
-    function getWeather(callback) { alert('aj '+window.data_url);
+    function getWeather(callback) { 
+	    alert('aj '+window.data_url);
+		
         $.ajax({
             dataType: "jsonp",
             url: window.data_url,
-            success: callback
+            success: callback,
+			error: function (error) {
+				$("#weatherResult").stop().fadeOut("slow",function(){ $(this).html("<h4 style='color:red;'>ERROR!!! <br> NO CITY FOUND</h4>")}).fadeIn(2000);
+            }	
        });
+		
     };
 
 
-	//END Weather in Loop--------------------------------------------------------------------
+	//END function to use jsonp to get weather information--------------------------------------------------------------------
 	
 	
 	
