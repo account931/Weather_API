@@ -4,8 +4,8 @@
     <head>
       <meta charset="utf-8">
       <meta http-equiv="Content-Type" content="text/html">
-      <meta name="description" content="QR Codes, qr codes on-line," />
-      <meta name="keywords" content="QR Codes on-line">
+      <meta name="description" content="Weather in Ukraine" />
+      <meta name="keywords" content="weather, weather in Ukraine, weather in Kiev, weather in the world">
       <title>Weather</title>
   
       <!--Favicon-->
@@ -28,7 +28,7 @@
 
      <body>
 
-       <div id="headX" class="jumbotron text-center gradient alert-info" style =' background-color:lavender ;'> <!--#2ba6cb;-->
+       <div id="headX" class="jumbotron text-center gradient alert-info" style ='background-color:lavender;'> <!--#2ba6cb;-->
          <h1 id="h1Text"> <span id="textChange"> Weather on-line</span> <span class="glyphicon glyphicon-tree-conifer"><!--</span> <img src="http://78.media.tumblr.com/tumblr_m2hq5tt3ma1qav3uso1_400.gif" style="width:3%"/>--> </h1> 
 		   
            <p class="header_p">All cities weather processor  <!--generates random lists, ramdomizes integers, etc--> <!--<span class="glyphicon glyphicon-duplicate"></span>-->
@@ -54,6 +54,8 @@
 						  <datalist id="character">
 						      
 							  <option value="Amsterdam"></option>
+							  <option value="Copenhagen"></option>
+							  <option value="Zhytomyr"></option> 
 							  <option value="Kyiv"></option>
 							  <option value="Kuala Lumpur"></option>
 							  <option value="London"></option>
@@ -110,9 +112,17 @@
 				<br>
 				<center>
 				
-				<hr class="alert-info" style="width:98%;height:8px;">
-				<h3 class="alert-info" id="weather_header"> Weather in <span id='cityName'>Kyiv</span> for 6 days</h3>
-				<div class="row" id="weatherResult"> <!-- This div accept the JS html result-->
+				<hr class="lavender-color" style="width:98%;height:8px;">
+				
+				<!--- Header with city, population--->
+				<div class="col-sm-12 col-xs-12 lavender-color" id="weather_header">
+				    <!--Weather in <span id='cityName'>Kyiv</span> for 7 days--> <!-- Content NOT USED, content will be JS html-->
+				</div> 
+				<br><br>
+				<div  class="col-sm-12 col-xs-12" style="height:1px;"></div><!-- Just for margin-->
+				
+				<!----Weather Core result-->
+				<div class="col-sm-12 col-xs-12" id="weatherResult"  > <!-- This div accept the JS html result--><!--style='word-wrap: break-word;'-->
 				       
 				
 				</div> <!-- END class="row weatherResult">-->
@@ -125,6 +135,8 @@
 				 
 				 
 				  <!---Bootstrap dropdown JSON-->
+				 <br><div  class="col-sm-12 col-xs-12" style="height:30px;"></div><!-- Just for margin-->
+				 
     	         <div class="dropdown">
                      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">JSON
                      <span class="caret"></span></button>
