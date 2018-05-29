@@ -10,6 +10,7 @@
   
       <!--Favicon-->
       <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+	  
 
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	  
@@ -27,22 +28,38 @@
      </head>
 
      <body>
-
-       <div id="headX" class="jumbotron text-center gradient alert-info" style ='background-color:lavender;'> <!--#2ba6cb;-->
-         <h1 id="h1Text"> <span id="textChange"> Weather on-line</span> <span class="glyphicon glyphicon-tree-conifer"><!--</span> <img src="http://78.media.tumblr.com/tumblr_m2hq5tt3ma1qav3uso1_400.gif" style="width:3%"/>--> </h1> 
-		   
-           <p class="header_p">All cities weather processor  <!--generates random lists, ramdomizes integers, etc--> <!--<span class="glyphicon glyphicon-duplicate"></span>-->
-           </p>
-		   <!--<p class="language"><a href="/eng">ENG</a></p>-->
-		   
-	   </div>
-
-
-
+	 
        
+       <div id="headX" class=" text-center myShadow" style ='background-color:lavender;padding:10px;'> <!--#2ba6cb;-->
+	   
+         <h1 id="h1Text">
+             <img id ="wLogo"src="images/weather2.png"/>		 
+		     <span id="textChange" class="textShadow"> Weather on-line</span> 
+		     <!--</span> <img src="http://78.media.tumblr.com/tumblr_m2hq5tt3ma1qav3uso1_400.gif" style="width:3%"/>--> 
+			 <img id ="wLogo2" src="images/weather.png"/>
+			 
+		 </h1> 
+		   
+           <!--<p class="header_p">All cities weather processor</p>-->  <!--generates random lists, ramdomizes integers, etc--> <!--<span class="glyphicon glyphicon-duplicate"></span>-->  
+	   </div>
+	   
+	   <!--
+	   <div id="headX" class="jumbotron text-center gradient alert-info" style ='background-color:lavender;'> 
+           <h1 id="h1Text"> <span id="textChange"> Weather on-line</span> <span class="glyphicon glyphicon-tree-conifer"></h1>    
+           <p class="header_p">All cities weather processor  
+           </p>	   
+	   </div>
+	   -->
+
+
+
+         <br>
          <div class="wrapper grey">
     	   <div class="container">
-		      <div class="col-sm-4 col-xs-12" style="background-color:lavender;">
+		   
+		   
+		   
+		      <div class="col-sm-4 col-xs-12 myShadow" style="background-color:lavender;">
 			  
 			  
              
@@ -112,17 +129,17 @@
 				<br>
 				<center>
 				
-				<hr class="lavender-color" style="width:98%;height:8px;">
+				<hr class="lavender-color " style="width:98%;height:8px;">
 				
 				<!--- Header with city, population--->
-				<div class="col-sm-12 col-xs-12 lavender-color" id="weather_header">
+				<div class="col-sm-12 col-xs-12 lavender-color myShadow" id="weather_header">
 				    <!--Weather in <span id='cityName'>Kyiv</span> for 7 days--> <!-- Content NOT USED, content will be JS html-->
 				</div> 
 				<br><br>
-				<div  class="col-sm-12 col-xs-12" style="height:1px;"></div><!-- Just for margin-->
+				
 				
 				<!----Weather Core result-->
-				<div class="col-sm-12 col-xs-12" id="weatherResult"  > <!-- This div accept the JS html result--><!--style='word-wrap: break-word;'-->
+				<div class="col-sm-12 col-xs-12 myShadow" id="weatherResult"  > <!-- This div accept the JS html result--><!--style='word-wrap: break-word;'-->
 				       
 				
 				</div> <!-- END class="row weatherResult">-->
