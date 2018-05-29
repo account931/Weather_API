@@ -124,7 +124,7 @@ $(document).ready(function(){
 			 var city = "Kiev"; //will never fire
 		 } else {
 			 var city = window.cityGet; 
-			 alert("You selected " + city);
+			 //alert("You selected " + city); // alert important
 		 }
 		  //cnt in API means days
 	      window.data_url = "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + city + "&mode=json&units=metric&cnt=7&appid=42b614437754a4ec7c704604e2a3f97f";  //Kyiv
@@ -163,17 +163,27 @@ $(document).ready(function(){
 				
 				
                 // INJECT FROM function constructAjaxResponse--------------
-				//getting 2 colors
-		        var colorArray = ['bg-primary', 'bg-warning'];
-		        var colorFlag = 1;
-		        if(i%2 == 0 ){
-		            colorFlag = 0;	
-		        } 
+				
+	                //getting 2 colors
+		            var colorArray = ['bg-primary', 'bg-warning'];
+		            var colorFlag = 1;
+		            if(i%2 == 0 ){
+		                colorFlag = 0;	
+		            } 
 			
-        //getting every day in the loop
-        weather_day = "<div class='row " + colorArray[colorFlag] +  "      ' id='weather" + i + "'><center>" + 
+		 // getting  today date and today weather, icon (the 1st day) for adding TODAY date in City header	
+            if (i==0){
+			    todayXconstruct = formattedDate;
+                todayTemp =  Math.floor(data.list[i].temp.min) + "&#186; +" + Math.floor(data.list[i].temp.max) + "&#186;" ;	
+                todayIcon = "<img class='weather_icon' style='width:8%;' src='http://openweathermap.org/img/w/" + data.list[i].weather[0].icon +  ".png'/>"			
+			}	
+			
 		
-	                  "<div class='col-sm-1 col-xs-2' title=' " + data.city.name + " '>" +
+        //getting every day in the loop
+        weather_day = "<div class='myStyle row " + colorArray[colorFlag] +  "' id='weather" + i + "'><center>" +  // <div class='row bg-primary' id='weather1'>
+		              
+					  // Date and ictyname in <title>
+	                  "<div class='col-sm-1 col-xs-2' title='" +data.city.name + " '>" +
 	                       formattedDate  +   // Date, city in <title>
 					  "</div>" +	
 					  
@@ -193,17 +203,20 @@ $(document).ready(function(){
 					  // Weather description (condition, description) + icon
 					  "<div class='col-sm-2 col-xs-2'  >" +
 					      data.list[i].weather[0].description +
-						      "<img style='width:18%;' src='http://openweathermap.org/img/w/" + data.list[i].weather[0].icon +  ".png'/>" +
+						      "<img class='weather_icon' style='width:27%;' src='http://openweathermap.org/img/w/" + data.list[i].weather[0].icon +  ".png'/>" +
 					  "</div>" + 
 					  
 					  "</center></div>";
 					  
 					  
-					  //Construction city info, name, country, population, lat/lon
+					  //Construction city info, name, country, population, lat/lon + weather for today only(Used in City header)
 					  city_info = "<br><h3>Weather in " + data.city.name + ", " + data.city.country +" for 7 days<h3>" +
-					              "<h6>Population: " + data.city.population +  ", lon:"  + data.city.coord.lon + ", lat:" + data.city.coord.lat + "</h6></br>" ;
+					              "<h6>" + 
+								  "Population: " + data.city.population +  ", lon:"  + data.city.coord.lon + ", lat:" + data.city.coord.lat + "<br>" /* + todayIcon */ +  
+								  "today " + todayXconstruct + " +" + todayTemp + /* +  "<br>" + todayIcon */   // today date and today tempature
+								  "<br></h6>";
+					              
 					  $('#weather_header').html(city_info);
-	
 				//END INJECT FROM function constructAjaxResponse------------
 				
 				
