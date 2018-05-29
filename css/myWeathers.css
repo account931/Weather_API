@@ -2,15 +2,34 @@
 	margin:4%;
   }
 
-
+/* ---------------------------------------- Mobile */
 @media screen and (max-width: 480px) { 
  
- #weatherResult h4{
-	 
-	 font-size: 1em; 
-	 
- }
+    #weatherResult h4{	 
+	    font-size: 1em; 	 
+    }
+ 
+    #wLogo{
+	    width:40%;	
+    }
+	
+	#wLogo2{
+	    display:none;	
+    }
+	
+	  /* weather icon in 7 days */
+    .weather_icon{
+	      width: 83%;
+     }
+  
+
 }
+/* ------------------------------------- END Mobile */
+
+
+
+
+
 
 .lavender-color {
   background-color:lavender;
@@ -19,8 +38,64 @@
 
 
 
+/* Weather header logo */
+#wLogo, #wLogo2{
+	 width:10%;
+	 position:relative;
+	 top:; 
+	 left:;
+}
 
+.myShadow{
+    box-shadow: 10px 10px 5px grey;
+}
+ 
+.textShadow{ 
+    color: white; 
+	/* text-shadow: black 0.2em 0.1em 0.2em; */
+	text-shadow:
+    1px  1px 2px black,
+    1px -1px 2px black,
+   -1px  1px 2px black,
+   -1px -1px 2px black;	 
+}  
+  
+  
+  
+  
+  
+  /* Padding in weather 7 days */
+  .myStyle{
+	  padding-top:1em;
+  }
+  
 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
