@@ -139,9 +139,9 @@ $(document).ready(function(){
 		  
 		  
 		  
-		  // RUNS DUBLICATE getWeather(); on your custom city click, ccan not run myAction() with getWeather() inside, though runs it on default load
+		  // Used to RUN DUBLICATE getWeather(); on your custom city click, can not run myAction() with getWeather() inside, though runs it on default load
 		  myAction();
-		  //  END RUNS DUBLICATE getWeather(); on your custom city click, ccan not run myAction() with getWeather() inside, though runs it on default load
+		  //  END Used to run DUBLICATE getWeather(); on your custom city click, can not run myAction() with getWeather() inside, though runs it on default load
 		  
 		  
 		  
@@ -239,7 +239,7 @@ $(document).ready(function(){
    
    
    
-          // calling the function to construct the whole Div with results, arg[counter whch starts from 1, not 0 for Div naming(div1)/, for()iteration value/, Unix data from a]ax, converted to norn/, all ajax data response)
+          // calling the function to construct the whole Div with results, arg[counter which starts from 1, not 0 for Div naming(div1)/, for()iteration value/, Unix data from a]ax, converted to norn(29/05)/, all ajax data response, dayOfWeek(Friday))
           constructAjaxResponse(myIteration, i, formattedDate, data, dayOfWeek);
 					  
          //document.getElementById('weather' + myIteration).innerHTML = weather_day;
