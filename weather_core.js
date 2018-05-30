@@ -143,7 +143,8 @@ $(document).ready(function(){
 		  myAction();
 		  //  END Used to run DUBLICATE getWeather(); on your custom city click, can not run myAction() with getWeather() inside, though runs it on default load
 		  
-		  
+		  //Scroll to results
+	      scrollResults("#weather_header"); //scroll the page down to weather results
 		  
 		  
 		  
@@ -252,6 +253,9 @@ $(document).ready(function(){
 	//$('#weatherResult').html(weather_day_all);  //html the result
 	//html weather result with animation
     $("#weatherResult").stop().fadeOut("slow",function(){ $(this).html(weather_day_all)}).fadeIn(2000);
+	
+	
+		  
 		  
 	$('#pureJson').html(JSON.stringify(data, null, 4));  //html pure json to Bootsrap dropdown
 	//alert(JSON.stringify(data, null, 4));
