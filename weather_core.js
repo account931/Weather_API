@@ -7,10 +7,10 @@ $(document).ready(function(){
     // **************************************************************************************
     //                                                                                     **
     // START HEADER  CHANGE HOVER HEADER Change -> Waze Check Apllication******
-    $('#headX').hover(function(){    
+    $('#headXz').hover(function(){    
         //$('#headerp').html('Social Networking');
        $("#textChange").clearQueue();//prevent endeless
-       $("#textChange").stop().fadeOut(900,function(){  $(this).html("<span style='color:black'>Weather on-line </span> ") }).fadeIn(900);
+       $("#textChange").stop().fadeOut(900,function(){  $(this).html("<span style=''>Weather on-line </span> ") }).fadeIn(900);
 
              /*$('#textChange').stop().hide(800);  
              $('#headerpHIDDEN').stop().show(1000);*/
@@ -70,7 +70,9 @@ $(document).ready(function(){
 			if ( !$("#qrResult").is(':visible')) { 
 				$("#qrResult").show(900);
 			}
-			$("#qrResult").html('<div class="alert alert-danger"><h2 class="red"><center><span class="glyphicon glyphicon-log-in"></span><br><br>NO INPUT FOR YOUR CITY</center><h2></div>'); 
+			//html weather result with animation
+            $("#qrResult").stop().fadeOut("slow",function(){ $(this).html('<div class="alert alert-danger"><h3 class="red"><center><span class="glyphicon glyphicon-log-in"></span><br><br>NO INPUT FOR YOUR CITY</center><h3></div>')}).fadeIn(2000);
+			
 			return false;
 		} else {
 			runCityName();
@@ -92,7 +94,7 @@ $(document).ready(function(){
 		
 		$("#citytext").val("");
 		$("#weatherResult").hide(900);
-		//$("#weather_header").hide(900);
+		$("#qrResult").hide(900);
 		scroll_toTop(); // function to scroll the page up
 	}
 	// **                                                                                  **
@@ -131,110 +133,14 @@ $(document).ready(function(){
 		  //alert(window.data_url);
 		  
 		  var days = 7; // counter for loop
-		  var weather_day_all = "";
-          var weather_day = "<center>";
+		  //var weather_day_all = "";
+          //var weather_day = "<center>";
 		  //myAction(); //not working
 		  
 		  
 		  
-		  
 		  // RUNS DUBLICATE getWeather(); on your custom city click, ccan not run myAction() with getWeather() inside, though runs it on default load
-		  getWeather(function (data) {
-		      var	hours24 = 0;
-		      for (var i = 0; i < days; i++){
-		          //alert(hours24);
-			      var myIteration = i + 1; // for divs, which are from 1-7, not 0-6
-	
-	              var	hours24 = hours24 + 24; // for var d = new Date(new Date().getTime() + hours24 * 60 * 60 * 1000);
-	             //alert(hours24);
-	
-	             //Getting date--NOT USED, we take date from Json dt!!!!
-   
-                 // convert received in JSOn answer UNIX to norm date
-                 var date = new Date(data.list[i].dt * 1000);
-                 // Form the date in {day/month}, all uncommented string returns {day/month/year/hour/min}
-                 var formattedDate = ('0' + date.getDate()).slice(-2) + '/' + ('0' + (date.getMonth() + 1)).slice(-2) /* + '/' + date.getFullYear() + ' ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2) */;
-   
-                //getting  tem  to  var  and  to  Celcium
-                //var t=data.main.temp; t=t-272; t=Math.round(t);
-   
-                //getting every day in the loop
-				
-				
-				
-                // INJECT FROM function constructAjaxResponse--------------
-				
-	                //getting 2 colors
-		            var colorArray = ['bg-primary', 'bg-warning'];
-		            var colorFlag = 1;
-		            if(i%2 == 0 ){
-		                colorFlag = 0;	
-		            } 
-			
-		 // getting  today date and today weather, icon (the 1st day) for adding TODAY date in City header	
-            if (i==0){
-			    todayXconstruct = formattedDate;
-                todayTemp =  Math.floor(data.list[i].temp.min) + "&#186; +" + Math.floor(data.list[i].temp.max) + "&#186;" ;	
-                todayIcon = "<img class='weather_icon' style='width:8%;' src='http://openweathermap.org/img/w/" + data.list[i].weather[0].icon +  ".png'/>"			
-			}	
-			
-		
-        //getting every day in the loop
-        weather_day = "<div class='myStyle row " + colorArray[colorFlag] +  "' id='weather" + i + "'><center>" +  // <div class='row bg-primary' id='weather1'>
-		              
-					  // Date and ictyname in <title>
-	                  "<div class='col-sm-1 col-xs-2' title='" +data.city.name + " '>" +
-	                       formattedDate  +   // Date, city in <title>
-					  "</div>" +	
-					  
-                      "<div class='col-sm-2 col-xs-2'>" +					  
-					       Math.floor(data.list[i].temp.day) + "&#186;" + // average temp
-					  "</div>" +
-					  
-					  // min and max temp, symbol{&#186;} is a degree mark, temp is Math.floor() to prevent 19.87C
-					  "<div class='col-sm-2 col-xs-2'>" +
-	                      "+" + Math.floor(data.list[i].temp.min) + "&#186; +" + Math.floor(data.list[i].temp.max) + "&#186;" +
-					  "</div>" +
-					  
-					  "<div class='col-sm-2 col-xs-2'    >" +	  
-					      "Wind: " + data.list[i].speed + " m/h" +
-					  "</div>" +
-					  
-					  // Weather description (condition, description) + icon
-					  "<div class='col-sm-2 col-xs-2'  >" +
-					      data.list[i].weather[0].description +
-						      "<img class='weather_icon' style='width:27%;' src='http://openweathermap.org/img/w/" + data.list[i].weather[0].icon +  ".png'/>" +
-					  "</div>" + 
-					  
-					  "</center></div>";
-					  
-					  
-					  //Construction city info, name, country, population, lat/lon + weather for today only(Used in City header)
-					  city_info = "<br><h3>Weather in " + data.city.name + ", " + data.city.country +" for 7 days<h3>" +
-					              "<h6>" + 
-								  "Population: " + data.city.population +  ", lon:"  + data.city.coord.lon + ", lat:" + data.city.coord.lat + "<br>" /* + todayIcon */ +  
-								  "today " + todayXconstruct + " +" + todayTemp + /* +  "<br>" + todayIcon */   // today date and today tempature
-								  "<br></h6>";
-					              
-					  $('#weather_header').html(city_info);
-				//END INJECT FROM function constructAjaxResponse------------
-				
-				
-					  
-               //document.getElementById('weather' + myIteration).innerHTML = weather_day;
-	           weather_day_all = weather_day_all + weather_day; // getting all days in one varibale
-	      } //end For loop
-	
-	      weather_day_all = weather_day_all + "</center>";
-	      //alert(weather_day_all);
-		  
-	      //$('#weatherResult').html(weather_day_all);  //html the result
-		  //html weather result with animation
-		  
-		  scrollResults("#weather_header"); //scroll the page down to weather results
-		  $("#weatherResult").stop().fadeOut("slow",function(){ $(this).html(weather_day_all)}).fadeIn(2000);
-						
-	      }); //end function
+		  myAction();
 		  //  END RUNS DUBLICATE getWeather(); on your custom city click, ccan not run myAction() with getWeather() inside, though runs it on default load
 		  
 		  
@@ -272,9 +178,9 @@ $(document).ready(function(){
 	//cnt in API means days
     data_url = "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + city + "&mode=json&units=metric&cnt=7&appid=42b614437754a4ec7c704604e2a3f97f";  //Kyiv
    //function to pull information out of the json file and stick it into an HTML element
-	var Month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; 
-	var weather_day_all = "";
-    var weather_day = "<center>";
+	var Month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; //not used!!!!!
+	//var weather_day_all = "";
+    //var weather_day = "<center>";
 	
 	
 	
@@ -286,15 +192,17 @@ $(document).ready(function(){
 	
 	
 	
-	
+	// Core action which includes getWeather(function (data), it is called onLoad and onClick
 	// **************************************************************************************
     // **************************************************************************************
     //                                                                                     **
-	function myAction() {
+	function myAction(/*data*/) {
 	getWeather(function (data) {
 		
-		
-		
+		//must have declaration to avoid doubling results onClick
+		weather_day_all = "";
+        weather_day = "<center>";
+	
 		var	hours24 = 0;
 		
 		
@@ -320,8 +228,11 @@ $(document).ready(function(){
             var date = new Date(data.list[i].dt * 1000);
            // Form the date in {day/month}, all uncommented string returns {day/month/year/hour/min}
            var formattedDate = ('0' + date.getDate()).slice(-2) + '/' + ('0' + (date.getMonth() + 1)).slice(-2) /* + '/' + date.getFullYear() + ' ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2) */;
-             
-		   				
+            
+           //get the day of the week			
+		   var daysArr = ['Sund','Mond','Tues','Wedn','Thurs','Frid &nbsp;','Satur'];
+           var dayOfWeek = daysArr[new Date(data.list[i].dt * 1000).getDay()];
+           //alert(dayOfWeek);		   
    
            //getting  tem  to  var  and  to  Celcium
           //var t=data.main.temp; t=t-272; t=Math.round(t);
@@ -329,7 +240,7 @@ $(document).ready(function(){
    
    
           // calling the function to construct the whole Div with results, arg[counter whch starts from 1, not 0 for Div naming(div1)/, for()iteration value/, Unix data from a]ax, converted to norn/, all ajax data response)
-          constructAjaxResponse(myIteration, i, formattedDate, data);
+          constructAjaxResponse(myIteration, i, formattedDate, data, dayOfWeek);
 					  
          //document.getElementById('weather' + myIteration).innerHTML = weather_day;
 	     weather_day_all = weather_day_all + weather_day; // getting all days in one varibale
@@ -359,7 +270,7 @@ $(document).ready(function(){
 	
 	
 	
-	// function to use jsonp to get weather information
+	// original description for function to use jsonp to get weather information
 	// **************************************************************************************
     // **************************************************************************************
     //                                                                                     **
@@ -436,10 +347,10 @@ $(document).ready(function(){
     // **************************************************************************************
     //                                                                                     **
 	
-	function constructAjaxResponse(iteration, i, formattedDate, data) 
+	function constructAjaxResponse(iteration, i, formattedDate, data, dayOfWeek) //(iteration=i+1{to form div id="weather1"}), i=i, formattedDate=29/05,data=whole json answer, dayOfWeek=Sunday)
 	{
 		//getting 2 colors
-		var colorArray = ['bg-primary', 'bg-warning'];
+		var colorArray = ['bg-primary', 'bg-info'];
 		var colorFlag = 1;
 		    if(i%2 == 0 ){
 		       colorFlag = 0;	
@@ -458,7 +369,7 @@ $(document).ready(function(){
 		              
 					  // Date and ictyname in <title>
 	                  "<div class='col-sm-1 col-xs-2' title='" +data.city.name + " '>" +
-	                       formattedDate  +   // Date, city in <title>
+	                       dayOfWeek  + " " + formattedDate +  // Date, city in <title>
 					  "</div>" +	
 					  
                       "<div class='col-sm-2 col-xs-2'>" +					  

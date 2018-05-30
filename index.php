@@ -30,10 +30,10 @@
      <body>
 	 
        
-       <div id="headX" class=" text-center myShadow" style ='background-color:lavender;padding:10px;'> <!--#2ba6cb;-->
+       <div id="headX" class=" text-center myShadow colorAnimate" style ='background-color:lavender;padding:10px;'> <!--#2ba6cb;-->
 	   
          <h1 id="h1Text">
-             <img id ="wLogo"src="images/weather2.png"/>		 
+             <img id ="wLogo" class="shrink-large" src="images/weather2.png"/>		 
 		     <span id="textChange" class="textShadow"> Weather on-line</span> 
 		     <!--</span> <img src="http://78.media.tumblr.com/tumblr_m2hq5tt3ma1qav3uso1_400.gif" style="width:3%"/>--> 
 			 <img id ="wLogo2" src="images/weather.png"/>
@@ -59,7 +59,7 @@
 		   
 		   
 		   
-		      <div class="col-sm-4 col-xs-12 myShadow" style="background-color:lavender;">
+		      <div class="col-sm-4 col-xs-12 myShadow shrink" style="background-color:lavender;">
 			  
 			  
              
@@ -71,17 +71,30 @@
 						  <datalist id="character">
 						      
 							  <option value="Amsterdam"></option>
+							  <option value="Athens"></option>
 							  <option value="Copenhagen"></option>
-							  <option value="Zhytomyr"></option> 
-							  <option value="Kyiv"></option>
+							  <option value="Dubai"></option>
+							  
+							  <option value="Istanbul"></option>
 							  <option value="Kuala Lumpur"></option>
+							  <option value="Kuwait"></option>
+							  <option value="Kyiv"></option>
+							  
 							  <option value="London"></option>
 							  <option value="Marrakech"></option>
-							  <option value="Miami"></option>  
+							  <option value="Miami"></option> 
+                              <option value="Milan"></option> 							  
                               <option value="Odessa"></option>
+							  <option value="Rome"></option>
 							  <option value="Stockholm"></option>
 							  <option value="Tokyo"></option>
 							  <option value="Vienna"></option>
+							  <option value="Yakutsk"></option>
+							  <option value="Zhytomyr"></option> 
+							  
+							  
+							  
+							 
 							  
 							  
 							  
@@ -185,7 +198,7 @@
 		  <!-----Footer ---->
 		        
 				<div class="footer navbar-fixed-bottom"> <!--navbar-fixed-bottom  fixxes bootom problem-->
-				    Contact: <strong>dimmm931@gmail.com</strong><br>
+				    <!--Contact: --> <strong>dimmm931@gmail.com</strong><br>
 					<?php  echo date("Y"); ?>
 				</div>
 		<!--END Footer ---->  
