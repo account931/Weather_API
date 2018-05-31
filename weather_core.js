@@ -67,11 +67,12 @@ $(document).ready(function(){
 	$("#submit").click(function() {   
 	
         if($("#citytext").val().trim()==''){
-			if ( !$("#qrResult").is(':visible')) { 
-				$("#qrResult").show(900);
+			if ( !$("#qrResult").is(':visible')) {  //will never fire, we changed the div property to always visible, we don't hide it, we html("") it
+				$("#qrResult").show(900);           // 
 			}
-			//html weather result with animation
-            $("#qrResult").stop().fadeOut("slow",function(){ $(this).html('<div class="alert alert-danger"><h3 class="red"><center><span class="glyphicon glyphicon-log-in"></span><br><br>NO INPUT FOR YOUR CITY</center><h3></div>')}).fadeIn(2000);
+			 clearQRField();
+			//html Error No City wresult with animation
+            $("#qrResult").stop().fadeOut("slow",function(){ $(this).html('<div class="red alert alert-danger"><h3><center><span class="glyphicon glyphicon-log-in"></span><br><br>NO INPUT FOR YOUR CITY </center> </h3></div>')}).fadeIn(2000);
 			
 			return false;
 		} else {
@@ -94,7 +95,9 @@ $(document).ready(function(){
 		
 		$("#citytext").val("");
 		$("#weatherResult").hide(900);
-		$("#qrResult").hide(900);
+		//clear Error div
+		//this caused Mega error ->($("#qrResult").hide()), div was moving right, rescaling the whole window, was fixed by changing to html('');
+		$("#qrResult").stop().fadeOut("slow",function(){ $(this).html('')}).fadeIn(2000); 
 		scroll_toTop(); // function to scroll the page up
 	}
 	// **                                                                                  **
@@ -116,9 +119,14 @@ $(document).ready(function(){
     //                                                                                     **
 	 function runCityName()
 	 {	 
+	 
+	    
+		 
 		 window.cityGet = $('#citytext').val();
+	
+		  
 		 //alert(cityGet);
-		 $("#cityName").html(cityGet);
+		 //$("#cityName").html(cityGet); //not used any more
 		 //getWeather(function (data));
 		 //return false;
 		 
@@ -145,7 +153,7 @@ $(document).ready(function(){
 		  
 		  //Scroll to results
 	      scrollResults("#weather_header"); //scroll the page down to weather results
-		  
+		  $("#qrResult").html(''); // Mega error, should use html('') instead of hide(900)
 		  
 		  
 		} // END runCityName()
@@ -231,7 +239,7 @@ $(document).ready(function(){
            var formattedDate = ('0' + date.getDate()).slice(-2) + '/' + ('0' + (date.getMonth() + 1)).slice(-2) /* + '/' + date.getFullYear() + ' ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2) */;
             
            //get the day of the week			
-		   var daysArr = ['Sund','Mond','Tues','Wedn','Thurs','Frid &nbsp;','Satur'];
+		   var daysArr = ['Sund','Mond','Tues','Wedn','Thurs','Frid&nbsp;','Satur'];
            var dayOfWeek = daysArr[new Date(data.list[i].dt * 1000).getDay()];
            //alert(dayOfWeek);		   
    
@@ -286,7 +294,7 @@ $(document).ready(function(){
             url: window.data_url,
             success: callback,
 			error: function (error) {
-				$("#weatherResult").stop().fadeOut("slow",function(){ $(this).html("<h4 style='color:red;'>ERROR!!! <br> NO CITY FOUND</h4>")}).fadeIn(2000);
+				$("#weatherResult").stop().fadeOut("slow",function(){ $(this).html("<h4 style='color:red;padding:3em;'>ERROR!!! <br> NO CITY FOUND</h4>")}).fadeIn(2000);
             }	
        });
 		
@@ -344,8 +352,8 @@ $(document).ready(function(){
 	
 	
 	
-	//Used in onLoad only, to copy pattern copy var weather_day to click section
-	// Comstructs Div with results, arg passed are  from {{function myAction() {getWeather(function (data) }}
+	//Used in myAction() function onLoad and onClick, 
+	// Constructs Div with results, arg passed are from {{function myAction() {getWeather(function (data) }}
 	//Some arg have the same name as passed arg, when u call the funtion for simplicity, some(i.e passed "myIteration", but here we use "iteration") are the same,in this case, here in original function, we should rename "myIteration"
 	// **************************************************************************************
     // **************************************************************************************
@@ -389,13 +397,19 @@ $(document).ready(function(){
 					      "Wind: " + data.list[i].speed + " m/h" +
 					  "</div>" +
 					  
-					  // Weather description (condition, description) + icon
-					  "<div class='col-sm-2 col-xs-2'  >" +
+					  // Weather description (condition, description)+icon(visible in mobile only (class='weather_icon_mob))
+					  "<div class='col-sm-1 col-xs-2'  >" +
 					      data.list[i].weather[0].description +
-						      "<img class='weather_icon' style='width:27%;' src='http://openweathermap.org/img/w/" + data.list[i].weather[0].icon +  ".png'/>" +
+						  "<br><img class='weather_icon_mob'  src='http://openweathermap.org/img/w/" + data.list[i].weather[0].icon +  ".png'/>" +
+					  "</div>" + 
+					  
+					    // Weather icon, visible in web only, hidden in mobile (class='weather_icon)
+					  "<div class='col-sm-2 col-xs-1'  >" +
+						      "<img class='weather_icon'  src='http://openweathermap.org/img/w/" + data.list[i].weather[0].icon +  ".png'/>" +
 					  "</div>" + 
 					  
 					  "</center></div>";
+					  // End construct of var weather_day =  
 					  
 					  
 					  //Construction city info, name, country, population, lat/lon + weather for today only(Used in City header)

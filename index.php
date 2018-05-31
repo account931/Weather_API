@@ -125,11 +125,8 @@
 				 
 				 <!--------------------------- START Error window---------------------------->
 				<div class="row">
-				<div class="col-sm-6 col-xs-12" id="qrResult">
-				<center>
-				
-                
-				</center></div> <!-- END <div class="col-sm-4 col-xs-12" id="qrResult">-->
+				<div class="col-sm-6 col-xs-12" id="qrResult"> <!-- width:100% caused none-one line position in web view, normal in mobile--> 
+				</div> <!-- END <div class="col-sm-4 col-xs-12" id="qrResult">-->
 				</div>
                 <!------------------------- END Error window------------------------------>
 				 
@@ -197,7 +194,7 @@
 		
 		  <!-----Footer ---->
 		        
-				<div class="footer navbar-fixed-bottom"> <!--navbar-fixed-bottom  fixxes bootom problem-->
+				<div class="footer "> <!--navbar-fixed-bottom  fixxes bootom problem-->
 				    <!--Contact: --> <strong>dimmm931@gmail.com</strong><br>
 					<?php  echo date("Y"); ?>
 				</div>
