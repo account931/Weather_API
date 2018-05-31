@@ -17,18 +17,29 @@
 	    display:none;	
     }
 	
-	  /* weather icon in 7 days */
-    .weather_icon{
-	      width: 83%;
+	 /* weather icon in mobile 7 days, visible in mobile only */
+    .weather_icon_mob{
+		 width:97%;	      
      }
   
-
+   /* weather icon in mobile 7 days, hidden in mobile */
+    .weather_icon{
+		display: none;	      
+     }
+  
 }
 /* ------------------------------------- END Mobile */
 
 
-
-
+ /* weather icon in 7 days, hidden in mobile */
+ .weather_icon{
+	      width: 27%;
+     }
+	
+/* weather icon in 7 days, hidden in web */	
+  .weather_icon_mob{
+	      width:0%;
+     }
 
 
 .lavender-color {
@@ -79,7 +90,7 @@
   
   /* Animation */
   
-   /* Set the object smaller*/
+   /* Set the object smaller on hover*/
   .shrink:hover {
      -webkit-transform: scale(0.9);
      -ms-transform: scale(0.9);
@@ -92,19 +103,32 @@
      transform: scale(2.2);
   }
   
-  .shrink,.shrink-large, .colorAnimate {
+   /* Set the header object radius on hover*/
+  .colorAnimate:hover {
+	  border-radius: 53px;
+      background:red;
+  }
+  
+  
+  /* descripe the animation behaviour */
+   .shrink-large, .colorAnimate {
+    -webkit-transition: all 1.5s ease;
+    -moz-transition: all 1.5s ease;
+    -o-transition: all 1.5s ease;
+     transition: all 1.5s ease;
+  }
+
+  
+    
+  /* descripe the animation behaviour */
+  .shrink{
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
      transition: all 0.5s ease;
   }
 
-  /* Set the object radius*/
-  .colorAnimate:hover {
-	  border-radius: 53px;
-      background:red;
-  }
-  
+ 
   
   /* END Animation */
   
